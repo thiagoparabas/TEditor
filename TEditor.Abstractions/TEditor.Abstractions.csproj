@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="EditorResources\editor.html" />
+    <None Remove="EditorResources\ZSSRichTextEditor.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EditorResources\editor.html" />
+    <EmbeddedResource Include="EditorResources\ZSSRichTextEditor.js" />
+  </ItemGroup>
+
+</Project>

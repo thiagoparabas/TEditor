@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{90ACB6ED-A4AF-46F0-AA69-A9BE726B1689}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TEditor.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>TEditor.iOS</AssemblyName>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Controls\TEditorViewController.cs" />
+    <Compile Include="Controls\TEditorWebView.designer.cs" />
+    <Compile Include="HideFormAccessoryBar.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="PopColorPicker\ColorPickerCustomViewController.cs" />
+    <Compile Include="PopColorPicker\ColorPickerFavoriteViewController.cs" />
+    <Compile Include="PopColorPicker\ColorPickerHueGridViewController.cs" />
+    <Compile Include="PopColorPicker\ColorPickerStandardViewController.cs" />
+    <Compile Include="PopColorPicker\FavoriteColorManager.cs" />
+    <Compile Include="PopColorPicker\Helper\DisplayHelper.cs" />
+    <Compile Include="PopColorPicker\Helper\LayerHelper.cs" />
+    <Compile Include="PopColorPicker\PopColorPickerViewController.cs" />
+    <Compile Include="PopColorPicker\Views\ColorPickerHSBView.cs" />
+    <Compile Include="PopColorPicker\Views\ColorPickerHueCircleView.cs" />
+    <Compile Include="TEditorImplementation.cs" />
+    <None Include="Entitlements.plist" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\TEditor.Abstractions\TEditor.Abstractions.csproj">
+      <Project>{cac7f747-9c43-41ff-9655-960b85f69d46}</Project>
+      <Name>TEditor.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TEditor\TEditor.csproj">
+      <Project>{500FCB53-4828-496B-B040-550231B4777D}</Project>
+      <Name>TEditor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSbgcolor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSbgcolor%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSbold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSbold%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSScenterjustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSScenterjustify%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSclearstyle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSclearstyle%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSforcejustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSforcejustify%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh1%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh2%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh3%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh4%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSh6%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSShorizontalrule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSShorizontalrule%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSimage%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSindent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSindent%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSinsertkeyword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSinsertkeyword%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSitalic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSitalic%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSkeyboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSkeyboard%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSleftjustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSleftjustify%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSlink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSlink%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSorderedlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSorderedlist%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSoutdent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSoutdent%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSparagraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSparagraph%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSpicker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSpicker%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSquicklink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSquicklink%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSredo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSredo%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSrightjustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSrightjustify%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSstrikethrough.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSstrikethrough%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSsubscript.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSsubscript%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSsuperscript.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSsuperscript%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSStable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSStable%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSStextcolor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSStextcolor%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSunderline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSunderline%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSundo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSundo%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSunlink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSunlink%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSunorderedlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSunorderedlist%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSviewsource.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ZSSviewsource%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-bar%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-custom%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-favorite%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-grid%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-inner-marker%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-marker%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-save%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\color-picker-trash%402x.png" />
+  </ItemGroup>
+</Project>

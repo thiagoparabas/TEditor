@@ -1,0 +1,186 @@
+﻿using System;
+using Android.App;
+using Android.Webkit;
+using Android.Views;
+using Android.Content;
+using Android.Util;
+using MonoDroid.ColorPickers;
+using Android.Graphics;
+using System.Threading.Tasks;
+using Java.IO;
+
+namespace TEditor
+{
+    public class TEditorWebViewClient : WebViewClient
+    {
+        Abstractions.TEditor _richTextEditor;
+
+        public TEditorWebViewClient(Abstractions.TEditor richTextEditor)
+        {
+            _richTextEditor = richTextEditor;
+        }
+
+        public override WebResourceResponse ShouldInterceptRequest(WebView view, IWebResourceRequest request)
+        {
+            if (request.HasGesture)
+                return base.ShouldInterceptRequest(view, request);
+            return null;
+        }
+
+        public override bool ShouldOverrideUrlLoading(WebView view, string url)
+        {
+            if (url.Contains("scroll://"))
+                return false;
+            else if (url.Contains("callback://"))
+                return true;
+            else
+                view.LoadUrl(url);
+            return true;
+        }
+
+        public override void OnPageFinished(WebView view, string url)
+        {
+            _richTextEditor.EditorLoaded = true;
+            _richTextEditor.SetPlatformAsDroid();
+            if (string.IsNullOrEmpty(_richTextEditor.InternalHTML))
+                _richTextEditor.InternalHTML = "";
+            _richTextEditor.UpdateHTML();
+
+            if (_richTextEditor.AutoFocusInput)
+                _richTextEditor.Focus();
+
+            base.OnPageFinished(view, url);
+        }
+    }
+
+    public class TEditorChromeWebClient : WebChromeClient
+    {
+        public override bool OnConsoleMessage(ConsoleMessage consoleMessage)
+        {
+            Log.Info("WebView", consoleMessage.Message());
+            return base.OnConsoleMessage(consoleMessage);
+        }
+    }
+
+    public class JavaScriptResult : Java.Lang.Object, IValueCallback
+    {
+        TaskCompletionSource<string> _taskResult = new TaskCompletionSource<string>();
+
+        public void OnReceiveValue(Java.Lang.Object result)
+        {
+            try
+            {
+                var reader = new JsonReader(new StringReader(result.ToString()));
+                reader.Lenient = true;
+
+                if (reader.Peek() != JsonToken.Null)
+                {
+                    if (reader.Peek() == JsonToken.String)
+                    {
+                        var msg = reader.NextString();
+                        _taskResult.SetResult(msg.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _taskResult.SetException(ex);
+            }
+        }
+
+        public Task<string> GetResultAsync()
+        {
+            return _taskResult.Task;
+        }
+    }
+
+    public class TEditorWebView : WebView
+    {
+        Abstractions.TEditor _richTextEditor;
+        ColorPickerDialog _colorPickerDialog;
+
+        public Abstractions.TEditor RichTextEditor => _richTextEditor;
+        //WebView _webView;
+
+        public TEditorWebView(Context context) : base(context)
+        {
+            Init(context);
+        }
+
+        void Init(Context context)
+        {
+            _richTextEditor = new Abstractions.TEditor();
+
+            SetWebViewClient(new TEditorWebViewClient(_richTextEditor));
+            SetWebChromeClient(new TEditorChromeWebClient());
+            _richTextEditor.SetJavaScriptEvaluatingFunction((input) =>
+            {
+                EvaluateJavascript(input, null);
+            });
+            _richTextEditor.SetJavaScriptEvaluatingWithResultFunction((input) =>
+            {
+                var activity = context as Activity;
+                var result = new JavaScriptResult();
+                EvaluateJavascript(input, result);
+                if (activity != null)
+                {
+                    activity.RunOnUiThread(() =>
+                    {
+                    });
+                }
+                return result.GetResultAsync();
+            });
+            _colorPickerDialog = new ColorPickerDialog(context, Color.Red);
+            _colorPickerDialog.ColorChanged += (o, args) =>
+            {
+                _richTextEditor.SetTextColor((int)args.Color.R, (int)args.Color.G, (int)args.Color.B);
+            };
+
+            _richTextEditor.LaunchColorPicker = () =>
+            {
+                _colorPickerDialog.Show();
+            };
+            LoadResource();
+
+        }
+
+        public TEditorWebView(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+            Init(context);
+        }
+
+        public TEditorWebView(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
+        {
+            Init(context);
+        }
+
+        public void LoadResource()
+        {
+            Settings.JavaScriptEnabled = true;
+            Settings.AllowUniversalAccessFromFileURLs = true;
+            Settings.AllowFileAccessFromFileURLs = true;
+            Settings.AllowFileAccess = true;
+            Settings.DomStorageEnabled = true;
+
+            var htmlResource = _richTextEditor.LoadResources();
+            LoadDataWithBaseURL("http://www.xam-consulting.com", htmlResource, "text/html", "UTF-8", "");
+        }
+
+        public void SetHTML(string html)
+        {
+            _richTextEditor.InternalHTML = html;
+            _richTextEditor.UpdateHTML();
+        }
+
+        public async Task<string> GetHTML()
+        {
+            return await _richTextEditor.GetHTML();
+        }
+
+        public void SetAutoFocusInput(bool autoFocusInput)
+        {
+            _richTextEditor.AutoFocusInput = autoFocusInput;
+        }
+    }
+}
+
